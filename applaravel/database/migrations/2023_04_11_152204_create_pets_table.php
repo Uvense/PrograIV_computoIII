@@ -11,13 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
+        Schema::create('pets', function (Blueprint $table) {
+            $table->id();            
+            //campos de la tabla
             $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password')->nullable;
-            $table->rememberToken();
+            $table->integer('age');
+            $table->decimal('weight_kg');
+            $table->unsignedBigInteger('owner_id');
+
+            //clave foranea
+            $table->foreign('owner_id')->references('id')->on('owners');
+
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('pets');
     }
 };

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\StudentController;
+use App\Http\Controllers\PetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +15,16 @@ use App\Http\Controllers\StudentController;
 */
 
 Route::get('/', function () {
-    //return view('welcome');
-    return view('auth.login');
+    return view('welcome');
 });
 
-Auth::routes();
+/*
+Route::get('/pet', function(){
+    return view('pet.index');
+});
+*/
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('students', StudentController::class)->middleware('auth');
+// Route::get('pet/create', [PetController::class, 'create']);
+// accedemos a la clase PetController, y al metodo create
+
+Route::resource('pet', PetController::class);
